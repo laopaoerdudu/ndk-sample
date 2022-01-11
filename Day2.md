@@ -19,4 +19,8 @@ javah -classpath /Users/david/jni-sample/src -jni com.wwe.HelloWorld
 javah -classpath . com.wwe.HelloWorld
 ```
 
-3，
+3，生成库文件, mac 上是以 `.dylib` 结尾，Linux 是 `.so`, window 上是 `.dll`
+
+```
+cc -I$JAVA_HOME/include -I$JAVA_HOME/include/darwin -I. -fPIC -shared HelloWorld.c -o libHelloWorld.dylib
+```

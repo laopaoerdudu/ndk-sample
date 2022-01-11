@@ -297,9 +297,7 @@ for (uintptr_t curOffset = 0; curOffset < offsetToFind; curOffset += sizeof(void
 
 需要注意的是，这种 ArtMethod 计算方法只在 11以下 管用，11及以上 ArtMethod 的获取需要使用其他的方式，这个可以去翻翻源码来解决！
 
-#### Reference
 
-[听说这样学JNI，效果不是一般的好](https://mp.weixin.qq.com/s/8ylMbdcIBf4XM7ShyP3a4g)
 
 
 
