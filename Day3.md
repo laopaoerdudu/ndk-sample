@@ -16,7 +16,8 @@ JNIEnv *env;
 (*jvm)->GetEnv((void **) env, JNI_VERSION_1_6);
 ```
 
-当从 Java 层传递一个字符串过来之后，它的类型是 `jstring`。如果，我们想打印一下这个字符串，那么可以使用 `GetStringUTFChars` 这个函数，它会返回一个 `const char *` 类型（编码是 MUTF 类型，具体看参考文档 JNI TIPS），
+当从 Java 层传递一个字符串过来之后，它的类型是 `jstring`。如果，我们想打印一下这个字符串，
+那么可以使用 `GetStringUTFChars` 这个函数，它会返回一个 `const char *` 类型（编码是 MUTF 类型，具体看参考文档 JNI TIPS），
 我们就可以使用 printf 来打印它了。为啥要是 const 的呢？是因为 Java 中的 string 是不可变的，不允许更改。
 
 还有一个 `GetStringChars` 函数，它返回 `jchar*` 类型，我们不能直接打印。
@@ -198,9 +199,9 @@ if (exc) {
 
 JNI 提供了注册函数的两种方式，一种是静态注册，第二种是动态注册（RegisterNatives），
 动态注册的时机通常就是在 JNI_OnLoad 中，动态注册相比较于静态注册的好处就是可以批量注册，而且还不会暴露出注册的函数。
-看了一下源码流程，其实静态注册也是走的动态注册的流程。当一个类被加载的时候，会去设置
+看了一下源码流程，其实静态注册也是走的动态注册的流程。
 
-####  Hook JN I调用  
+####  Hook JNI 调用  
 
 FindClass 走的是 classLoader 加载类的流程，我们知道，每个 classLoader 都会指定 path 用来加载 dex 文件，
 那么有了类的描述符之后，就会挨个的去找，从而获取对应的 DexFile 文件。如果 classLoader 为 null 的话，就会去系统启动路径去找。
